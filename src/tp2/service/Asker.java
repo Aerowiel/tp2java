@@ -72,4 +72,21 @@ public class Asker {
 
         return attributes.toArray();
     }
+
+    public static boolean askIfRecursive(){
+
+        System.out.println("Recursive ? (Y/y N/n)");
+        while(!scanner.hasNext("Y|y|N|n")){
+            System.out.println("Recursive ? (Y/y N/n)");
+            scanner.nextLine();
+        }
+
+        if(scanner.nextLine().toLowerCase().equals("y")){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
 }

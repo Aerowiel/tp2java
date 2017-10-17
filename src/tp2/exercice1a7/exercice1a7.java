@@ -12,10 +12,10 @@ public class exercice1a7 {
         // Il vous suffit de dé-commenter l'exercice que vous souhaitez tester et de commenter le reste (sauf les 2 déclarations ci-dessus)
 
         // Exercice 1 Changer le 2éme argument en false si vous souhaitez qu'il n'y ai pas de récursivité
-        //customFileScanner.getAllFilesInFolder(customFileScanner.askFolderUri(), true);
+        //customFileScanner.getAllFilesInFolder(customFileScanner.askFolderUri(), Asker.askIfRecursive());
 
         // Exercice 2 Changer le 3éme argument en false si vous souhaitez qu'il n'y ai pas de récursivité
-        //customFileScanner.getAllFilesWithExtension(customFileScanner.askFolderUri(), customFileScanner.askExtension(), true);
+        //customFileScanner.getAllFilesWithExtension(customFileScanner.askFolderUri(), customFileScanner.askExtension(), Asker.askIfRecursive());
 
         // Exercice 3
         //customFileScanner.isFileOrFolder();

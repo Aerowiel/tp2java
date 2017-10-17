@@ -5,26 +5,20 @@ import java.util.Scanner;
 
 public class CustomFileScanner {
 
-    private Scanner scanner;
-
-    // Le constructeur init notre scanner...
-    public CustomFileScanner(){
-        scanner = new Scanner(System.in);
-
-    }
-
-    //  ASKERS
+    private Scanner scanner = new Scanner(System.in);
 
     // Cette fonction retourne uniquement le 'File' si c'est un dossier
     public File askFolderUri(){
         System.out.println("Folder uri :");
         File file = new File(scanner.nextLine());
 
+        // Si le fichier n'existe pas ou qu'il c'est un dossier
         while(!file.exists() || !file.isDirectory()){
-            if(!file.exists()){
+
+            if(!file.exists()){  // Si le fichier n'existe pas
                 System.out.println("Uri is pointing on nothing, please enter a valid folder path !");
             }
-            else if (file.isFile()){
+            else if (!file.isDirectory()){ // Si ce n'est pas un dossier
                 System.out.println("Uri is pointing on a file, please enter a folder path !");
 
             }
@@ -35,6 +29,7 @@ public class CustomFileScanner {
 
     }
 
+    // Fonction qui demande l'extension
     public String askExtension(){
         System.out.println("Extension : ");
         String extension = scanner.nextLine();
@@ -59,6 +54,7 @@ public class CustomFileScanner {
         System.out.println(systemOutPrefix + "uri :");
         File file = new File(scanner.nextLine());
 
+        // Vérification du type du file et si il existe
         while(!file.exists() || file.isDirectory()){
             if(!file.exists()){
                 System.out.println("Uri is pointing on nothing, please enter a valid folder path :");
@@ -72,19 +68,20 @@ public class CustomFileScanner {
         return file;
     }
 
+    // Fonction qui détermine si c'est un fichier ou un dossier
     public void isFileOrFolder(){
 
         System.out.println("File uri :");
         File file = new File(scanner.nextLine());
 
 
-        if(!file.exists()){
+        if(!file.exists()){ // Si le fichier n'existe pas
             System.out.println("Uri is pointing on nothing.");
         }
-        else if (file.isDirectory()){
+        else if (file.isDirectory()){ // Si le fichier est un dossier
             System.out.println("Uri is pointing on a folder.");
         }
-        else{
+        else{ // Si le fichier est un fichier
             System.out.println("Uri is pointing on a file.");
         }
     }

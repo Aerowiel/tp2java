@@ -41,7 +41,6 @@ public class CustomFileWriter {
 
         System.out.println("Opening : " + fileName + "...");
 
-
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(file, AskWritingStyle());
@@ -65,6 +64,7 @@ public class CustomFileWriter {
             line = scanner.nextLine();
         }
 
+        //On ferme le flux...
         System.out.println("Saving and closing file " + fileName + "...");
         try {
             fileWriter.close();
@@ -79,7 +79,11 @@ public class CustomFileWriter {
             FileChannel src = new FileInputStream(sourceFile).getChannel();
             FileChannel dest = new FileOutputStream(destinationFile, true).getChannel();
             dest.position( dest.size() );
+
+            //On transfere la source vers la destination
             src.transferTo(0, src.size(), dest);
+
+            //On ferme le flux...
             src.close();
             dest.close();
         } catch (IOException e) {
@@ -96,11 +100,14 @@ public class CustomFileWriter {
             OutputStream dest = new FileOutputStream(destinationFolder + "\\" + file.getName());
             byte[] buffer = new byte[8192];
             int length;
+
+            // Tant qu'il y a des trucs à transférer on écrit dans la destination
             while ((length = src.read(buffer)) > 0) {
                 dest.write(buffer, 0, length);
             }
             System.out.println("Successfully copied " + file.getName() + " to " + destinationFolder + "!");
 
+            //On ferme le flux...
             src.close();
             dest.close();
             System.out.println("Successfully closed input & output streams !");
@@ -117,17 +124,31 @@ public class CustomFileWriter {
             URL url = new URL(urlToImg);
             InputStream src = new BufferedInputStream(url.openStream());
             ByteArrayOutputStream dest = new ByteArrayOutputStream();
+
+            // On utilise un buffer de 8192 bytes, c'est plus rapide...
             byte[] buffer = new byte[8192];
             int length;
+
+            // Tant qu'il y a des trucs à transférer on écrit dans la destination
             while ((length = src.read(buffer)) > 0)
             {
                 dest.write(buffer, 0, length);
             }
+
+            // On ferme le flux
             src.close();
             dest.close();
+
+            // On convertit en tableau de bytes
             byte[] image = dest.toByteArray();
+
+            // Il est important de préciser le nom du fichier de destination... sinon erreur
             FileOutputStream fileOutputStream = new FileOutputStream(destinationFolder + "\\" + wantedName + ".png");
+
+            // On écrit l'image dans l'output stream
             fileOutputStream.write(image);
+
+            // On ferme le flux
             fileOutputStream.close();
 
         } catch (Exception e) {
